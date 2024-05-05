@@ -33,15 +33,15 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav mx-auto mt-2 mt-lg-0" id="navbar-example">
                         <li class="nav-item">
-                            <a class="nav-link active" href="#home">{{ __('Home') }}</a>
+                            <a class="nav-link active" href="/#home">{{ __('Home') }}</a>
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link" href="#pricing">{{ __('Pricing') }}</a>
+                            <a class="nav-link" href="/#pricing">{{ __('Pricing') }}</a>
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link" href="#FAQ">{{ __('FAQ') }}</a>
+                            <a class="nav-link" href="/#FAQ">{{ __('FAQ') }}</a>
                         </li>
 
 
