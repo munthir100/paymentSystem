@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\SubscriptionPlan;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -19,14 +20,9 @@ class SubscriptionPlanFactory extends Factory
         return [
             'name' => $this->faker->word,
             'description' => $this->faker->sentence,
-            'prices' => [
-                ['amount' => 100, 'duration' => '1 year'],
-                ['amount' => 180, 'duration' => '2 years'],
-                ['amount' => 250, 'duration' => '3 years'],
-                ['amount' => 320, 'duration' => '4 years'],
-            ],
+            'price' => $this->faker->numberBetween(50, 5000),
             'association_name' => $this->faker->word,
-            'status_id' => 1,
+            'status_id' => $this->faker->randomElement(array_keys(SubscriptionPlan::STATUSES)),
         ];
     }
 }

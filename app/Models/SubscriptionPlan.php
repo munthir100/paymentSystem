@@ -14,11 +14,7 @@ class SubscriptionPlan extends Model
 {
     use HasFactory, Filterable, HasStatus;
 
-    protected $fillable = ['name', 'description', 'prices', 'association_name', 'status_id'];
-
-    protected $casts = [
-        'prices' => 'array',
-    ];
+    protected $fillable = ['name', 'description', 'price', 'association_name', 'status_id'];
 
     const STATUSES = [
         Status::ACTIVE => 'Active',

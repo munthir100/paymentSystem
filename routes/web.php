@@ -8,7 +8,8 @@ Route::middleware([SetLocale::class])->group(function () {
 
     Route::post('changeLocale', [MainController::class, 'changeLocale'])->name('changeLocale');
 
-
+    Route::get('/', [MainController::class, 'home'])->name('home');
+    Route::get('subscriptionPlan/{id}/subscribe', [MainController::class, 'subscribe'])->name('subscriptionPlan.subscribe');
 
     Route::prefix('dashboard')->name('dashboard.')->group(function () {
         require base_path('routes/dashboard.php');

@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\SubscriptionPlan;
+use App\Models\SubscriptionPlanFeature;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -20,7 +21,7 @@ class SubscriptionPlanFeatureFactory extends Factory
         return [
             'name' => $this->faker->word,
             'subscription_plan_id' => null,
-            'status_id' => 1,
+            'status_id' => $this->faker->randomElement(array_keys(SubscriptionPlanFeature::STATUSES)),
         ];
     }
 }

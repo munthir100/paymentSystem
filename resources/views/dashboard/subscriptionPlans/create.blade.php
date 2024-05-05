@@ -67,25 +67,21 @@
                         </div>
                     </div>
                     <div class="row mb-2">
-                        <div class="col-md-6">
-                            <div id="pricesRepeater" class="mt-0">
-                                <div class="repeater">
-                                    <label class="form-label">{{ __("Prices") }}</label>
-                                    <div class="d-flex mb-2">
-                                        <input type="text" class="form-control mr-2" name="prices[0][amount]" placeholder="{{ __('Amount') }}" value="{{ old('prices.0.amount') }}">
-                                        <input type="text" class="form-control mr-2" name="prices[0][duration]" placeholder="{{ __('Duration (Years)') }}" value="{{ old('prices.0.duration') }}">
-                                        <button data-repeater-delete type="button" class="btn btn-outline-danger btn-sm">{{ __('Delete') }}</button>
-                                    </div>
-                                </div>
+                        <div class="col-md-6 col-12">
+                            <label class="form-label">{{ __("Price") }}</label>
+                            <div class="d-flex mb-2">
+                                <input type="number" class="form-control" name="price" placeholder="{{ __('Price') }}">
+                                @error('price')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
                             </div>
                             <div class="text-danger" id="errorPrices"></div>
-                            <button id="addPriceBtn" type="button" class="btn btn-outline-primary btn-sm mt-2">{{ __('Add Price') }}</button>
                         </div>
 
-                        <div class="col-md-6">
+                        <div class="col-md-6 col-12">
                             <div id="featuresRepeater" class="mt-0">
+                                <label class="form-label">{{ __("Features") }}</label>
                                 <div class="repeater">
-                                    <label class="form-label">{{ __("Features") }}</label>
                                     <div class="d-flex mb-2">
                                         <input type="text" class="form-control mr-2" name="features[0][name]" placeholder="{{ __('Feature Name') }}" value="{{ old('features.0.name') }}">
                                         <select required class="form-select" id="status_id" name="features[0][status_id]">

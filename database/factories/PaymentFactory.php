@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Payment;
 use App\Models\SubscriptionPlan;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -24,7 +25,7 @@ class PaymentFactory extends Factory
             'amount' => $this->faker->randomFloat(2, 10, 1000),
             'payment_method' => $this->faker->randomElement(['Credit Card', 'PayPal', 'Stripe']),
             'period' => $this->faker->randomElement(['Monthly', 'Yearly']),
-            'status_id' => 1,
+            'status_id' => $this->faker->randomElement(array_keys(Payment::STATUSES)),
         ];
     }
 }

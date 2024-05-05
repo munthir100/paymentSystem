@@ -77,3 +77,4 @@ tools for this project:
 # php artisan make:view dashboard.users.create
 # php artisan make:view dashboard.users.show
 # php artisan make:view dashboard.users.edit
+# php artisan make:view subscriptionPalns.subscribe

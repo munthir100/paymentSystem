@@ -68,29 +68,23 @@
                         </div>
                     </div>
                     <div class="row mb-2">
-                        <div class="col-md-6">
-                            <div id="pricesRepeater" class="mt-0">
-                                <div class="repeater">
-                                    <label class="form-label">{{ __("Prices") }}</label>
-                                    @foreach (json_decode($subscriptionPlan->prices, true) ?? [] as $index => $price)
-                                    <div class="d-flex mb-2">
-                                        <input type="text" class="form-control mr-2" name="prices[{{ $index }}][amount]" placeholder="{{ __('Amount') }}" value="{{ old('prices.' . $index . '.amount', $price['amount'] ?? '') }}">
-                                        <input type="text" class="form-control mr-2" name="prices[{{ $index }}][duration]" placeholder="{{ __('Duration (Years)') }}" value="{{ old('prices.' . $index . '.duration', $price['duration'] ?? '') }}">
-                                        <button data-repeater-delete type="button" class="btn btn-outline-danger btn-sm">{{ __('Delete') }}</button>
-                                    </div>
-                                    @endforeach
-                                </div>
+                        <div class="col-md-6 col-12">
+                            <label class="form-label">{{ __("Price") }}</label>
+                            <div class="d-flex mb-2">
+                                <input type="number" class="form-control" name="price" placeholder="{{ __('Price') }}" value="{{$subscriptionPlan->price}}">
+                                @error('price')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
                             </div>
                             <div class="text-danger" id="errorPrices"></div>
-                            <button id="addPriceBtn" type="button" class="btn btn-outline-primary btn-sm mt-2">{{ __('Add Price') }}</button>
                         </div>
 
                         <div class="col-md-6">
+                            <label class="form-label">{{ __("Features") }}</label>
                             <div id="featuresRepeater" class="mt-0">
-                                <div class="repeater">
-                                    <label class="form-label">{{ __("Features") }}</label>
+                                <div>
                                     @foreach ($subscriptionPlan->features as $index => $feature)
-                                    <div class="d-flex mb-2">
+                                    <div class="d-flex mb-2 repeater">
                                         <input type="text" class="form-control mr-2" name="features[{{ $index }}][name]" placeholder="{{ __('Feature Name') }}" value="{{ old('features.' . $index . '.name', $feature['name'] ?? '') }}">
                                         <select required class="form-select" id="status_id" name="features[{{ $index }}][status_id]">
                                             <option value="">{{__('Select Status')}}</option>
@@ -129,17 +123,10 @@
 <script>
     $(document).ready(function() {
         // Initialize repeaters
-        initializeRepeater('#pricesRepeater', 'prices');
         initializeRepeater('#featuresRepeater', 'features');
 
         // Template for prices and features
-        var priceTemplate = $('#pricesRepeater .repeater').eq(0).clone();
         var featureTemplate = $('#featuresRepeater .repeater').eq(0).clone();
-
-        // Handle add price button
-        $('#addPriceBtn').on('click', function() {
-            handleAddButton(priceTemplate, '#pricesRepeater', 'prices');
-        });
 
         // Handle add feature button
         $('#addFeatureBtn').on('click', function() {
@@ -147,7 +134,7 @@
         });
 
         // Handle delete price and feature buttons
-        $('#pricesRepeater, #featuresRepeater').on('click', 'button[data-repeater-delete]', function() {
+        $('#featuresRepeater').on('click', 'button[data-repeater-delete]', function() {
             handleDeleteButton($(this), $(this).closest('.repeater'));
         });
 

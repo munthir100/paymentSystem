@@ -16,7 +16,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->text('description')->nullable();
-            $table->json('prices')->nullable();
+            $table->string('price');
             $table->string('association_name')->nullable();
             $table->foreignId('status_id')->constrained()->default(Status::ACTIVE);
             $table->timestamps();

@@ -23,7 +23,7 @@ class MainSeeder extends Seeder
         $subscriptionPlans = SubscriptionPlan::factory()->count(5)->create();
 
         $subscriptionPlans->each(function ($plan) {
-            SubscriptionPlanFeature::factory()->count(3)->create(['subscription_plan_id' => $plan->id]);
+            SubscriptionPlanFeature::factory()->count(10)->create(['subscription_plan_id' => $plan->id]);
         });
         Payment::factory()->create();
     }

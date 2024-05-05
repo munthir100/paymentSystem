@@ -55,7 +55,7 @@ class SubscriptionPlanController extends Controller
 
     public function update(UpdateSubscriptionPlanRequest $request, SubscriptionPlan $subscriptionPlan)
     {
-        $this->authorize('update subscriptionPlan');
+        $this->authorize('update SubscriptionPlan');
 
         $validatedData = $request->validated();
 
