@@ -1,11 +1,11 @@
 @extends('dashboard.layouts.shared.app-layout')
 
 @section('title')
-@include("dashboard.layouts.shared.includes.title-meta", ["title" => __("Blogs")])
+@include("dashboard.layouts.shared.includes.title-meta", ["title" => __("Subscription Plans")])
 @endsection
 
 @section('page-title')
-@include("dashboard.layouts.shared.includes.page-title", ["pagetitle" => __("Account"), "title" => __("Projects")])
+@include("dashboard.layouts.shared.includes.page-title", ["pagetitle" => __("Account"), "title" => __("Subscription Plans")])
 @endsection
 
 @section('content')
@@ -80,7 +80,7 @@
                                                 <lord-icon src="https://cdn.lordicon.com/gsqxdxog.json" trigger="loop" colors="primary:#f7b84b,secondary:#f06548" style="width:100px;height:100px"></lord-icon>
                                                 <div class="mt-4 pt-2 fs-15 mx-5">
                                                     <h4>{{ __("Are you Sure ?") }}</h4>
-                                                    <p class="text-muted mx-4 mb-0">{{ __("Are you Sure You want to Delete this blog?") }}</p>
+                                                    <p class="text-muted mx-4 mb-0">{{ __("Are you Sure You want to Delete this item?") }}</p>
                                                 </div>
                                             </div>
                                         </div>

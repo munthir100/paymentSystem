@@ -1,11 +1,11 @@
 @extends('dashboard.layouts.shared.app-layout')
 
 @section('title')
-@include("dashboard.layouts.shared.includes.title-meta", ["title" => __("Blogs")])
+@include("dashboard.layouts.shared.includes.title-meta", ["title" => __("Payments")])
 @endsection
 
 @section('page-title')
-@include("dashboard.layouts.shared.includes.page-title", ["pagetitle" => __("Account"), "title" => __("Projects")])
+@include("dashboard.layouts.shared.includes.page-title", ["pagetitle" => __("Account"), "title" => __("Payments")])
 @endsection
 
 @section('content')

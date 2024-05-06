@@ -27,6 +27,6 @@ class PaymentController extends Controller
         $this->authorize('delete Payment');
         $payment->delete();
 
-        return to_route('dashboard.payments.index')->with('success', 'deleted successfully');
+        return to_route('dashboard.payments.index')->with('success', __('deleted successfully'));
     }
 }

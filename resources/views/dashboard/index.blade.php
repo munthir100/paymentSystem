@@ -15,13 +15,13 @@
 @section('content')
 
 <div class="row">
-    <div class="col-xl-4 col-md-6">
+    <div class="col-md-4">
         <!-- card -->
         <div class="card card-animate">
             <div class="card-body">
                 <div class="d-flex align-items-center">
                     <div class="flex-grow-1 overflow-hidden">
-                        <p class="text-uppercase fw-medium text-muted text-truncate mb-0">Total Subscription Plans</p>
+                        <p class="text-uppercase fw-medium text-muted text-truncate mb-0">{{ __('Total Subscription Plans') }}</p>
                     </div>
 
                 </div>
@@ -30,11 +30,11 @@
                         <h4 class="fs-22 fw-semibold ff-secondary mb-4">
                             <span class="counter-value" data-target="{{$subscriptionPlansCount}}">0</span>
                         </h4>
-                        <a href="{{route('dashboard.subscriptionPlans.index')}}" class="text-decoration-underline">View more details</a>
+                        <a href="{{route('dashboard.subscriptionPlans.index')}}" class="text-decoration-underline">{{ __('View more details') }}</a>
                     </div>
                     <div class="avatar-sm flex-shrink-0">
-                        <span class="avatar-title bg-success-subtle rounded fs-3">
-                            <i class="bx bx-dollar-circle text-success"></i>
+                        <span class="avatar-title bg-primary-subtle rounded fs-3">
+                            <i class="mdi mdi-calendar-cursor text-primary"></i>
                         </span>
                     </div>
                 </div>
@@ -42,13 +42,13 @@
         </div><!-- end card -->
     </div><!-- end col -->
 
-    <div class="col-xl-4 col-md-6">
+    <div class="col-md-4">
         <!-- card -->
         <div class="card card-animate">
             <div class="card-body">
                 <div class="d-flex align-items-center">
                     <div class="flex-grow-1 overflow-hidden">
-                        <p class="text-uppercase fw-medium text-muted text-truncate mb-0">Total Payments</p>
+                        <p class="text-uppercase fw-medium text-muted text-truncate mb-0">{{ __('Total Payments') }}</p>
                     </div>
 
                 </div>
@@ -57,11 +57,11 @@
                         <h4 class="fs-22 fw-semibold ff-secondary mb-4">
                             <span class="counter-value" data-target="{{$paymentsCount}}">0</span>
                         </h4>
-                        <a href="{{route('dashboard.payments.index')}}" class="text-decoration-underline">View more details</a>
+                        <a href="{{route('dashboard.payments.index')}}" class="text-decoration-underline">{{ __('View more details') }}</a>
                     </div>
                     <div class="avatar-sm flex-shrink-0">
-                        <span class="avatar-title bg-success-subtle rounded fs-3">
-                            <i class="bx bx-dollar-circle text-success"></i>
+                        <span class="avatar-title bg-primary-subtle rounded fs-3">
+                            <i class="ri-bank-card-line text-primary"></i>
                         </span>
                     </div>
                 </div>
@@ -70,13 +70,13 @@
     </div><!-- end col -->
 
 
-    <div class="col-xl-4 col-md-6">
+    <div class="col-md-4">
         <!-- card -->
         <div class="card card-animate">
             <div class="card-body">
                 <div class="d-flex align-items-center">
                     <div class="flex-grow-1 overflow-hidden">
-                        <p class="text-uppercase fw-medium text-muted text-truncate mb-0">Total Users</p>
+                        <p class="text-uppercase fw-medium text-muted text-truncate mb-0">{{ __('Total Users') }}</p>
                     </div>
 
                 </div>
@@ -85,19 +85,17 @@
                         <h4 class="fs-22 fw-semibold ff-secondary mb-4">
                             <span class="counter-value" data-target="{{$usersCount}}">0</span>
                         </h4>
-                        <a href="{{route('dashboard.users.index')}}" class="text-decoration-underline">View more details</a>
+                        <a href="{{route('dashboard.users.index')}}" class="text-decoration-underline">{{ __('View more details') }}</a>
                     </div>
                     <div class="avatar-sm flex-shrink-0">
-                        <span class="avatar-title bg-success-subtle rounded fs-3">
-                            <i class="bx bx-dollar-circle text-success"></i>
+                        <span class="avatar-title bg-primary-subtle rounded fs-3">
+                            <i class="ri-user-2-line text-primary"></i>
                         </span>
                     </div>
                 </div>
             </div><!-- end card body -->
         </div><!-- end card -->
     </div><!-- end col -->
-
-
 
 </div> <!-- end row-->
 

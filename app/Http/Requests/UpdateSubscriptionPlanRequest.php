@@ -27,9 +27,9 @@ class UpdateSubscriptionPlanRequest extends FormRequest
             'association_name' => 'sometimes|string|max:255',
             'status_id' => 'sometimes|exists:statuses,id',
             'price' => 'sometimes|numeric|min:0',
-            'features' => 'array',
-            'features.*.name' => 'sometimes|string|max:255',
-            'features.*.status_id' => 'sometimes|exists:statuses,id',
+            'features' => 'nullable|array',
+            'features.*.name' => 'nullable|string|max:255',
+            'features.*.status_id' => 'nullable|exists:statuses,id',
         ];
     }
 }

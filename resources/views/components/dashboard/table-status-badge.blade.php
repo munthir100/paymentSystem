@@ -4,7 +4,7 @@ $statusBadge = [
 \App\Models\Status::ACTIVE => ['label' => 'Active', 'class' => 'success'],
 \App\Models\Status::NOT_ACTIVE => ['label' => 'Not Active', 'class' => 'warning'],
 \App\Models\Status::BLOCKED => ['label' => 'Blocked', 'class' => 'danger'],
-\App\Models\Status::SUCCESSFULL => ['label' => 'Blocked', 'class' => 'success'],
+\App\Models\Status::SUCCESSFULL => ['label' => 'Successfull', 'class' => 'success'],
 \App\Models\Status::FAILED => ['label' => 'Faild', 'class' => 'danger'],
 ];
 @endphp

@@ -14,9 +14,17 @@ class MainController extends Controller
         return view('home', compact('subscriptionPlans'));
     }
 
-    public function subscribe($id)
+    public function subscribe(Request $request, $id)
     {
         $subscriptionPlan = SubscriptionPlan::isActive()->findOrFail($id);
+        
+        $request->validate([
+            'name' => 'required|string',
+            'email' => 'required|email',
+        ]);
+        session()->put('name', $request->name);
+        session()->put('email', $request->email);
+
 
         return view('subscriptionPalns.subscribe', compact('subscriptionPlan'));
     }

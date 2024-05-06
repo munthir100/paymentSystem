@@ -35,7 +35,7 @@ class UserController extends Controller
             $user->syncPermissions($request->permissions);
         }
 
-        return to_route('dashboard.users.index')->with('success', 'created successfully');
+        return to_route('dashboard.users.index')->with('success', __('created successfully'));
     }
 
     public function show(User $user)
@@ -56,7 +56,7 @@ class UserController extends Controller
         $user->update($request->validated());
         $user->syncPermissions($request->permissions);
 
-        return back()->with('success', 'updated successfully');
+        return back()->with('success', __('updated successfully'));
     }
 
     public function destroy(User $user)
@@ -64,6 +64,6 @@ class UserController extends Controller
         $this->authorize('delete User');
         $user->delete();
 
-        return to_route('dashboard.users.index')->with('success', 'deleted successfully');
+        return to_route('dashboard.users.index')->with('success', __('deleted successfully'));
     }
 }

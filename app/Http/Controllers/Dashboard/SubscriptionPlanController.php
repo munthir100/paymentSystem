@@ -29,16 +29,18 @@ class SubscriptionPlanController extends Controller
         $validatedData = $request->validated();
         $subscriptionPlan = SubscriptionPlan::create($validatedData);
 
-        $featuresData = [];
-        foreach ($validatedData['features'] as $featureData) {
-            $featuresData[] = [
-                'name' => $featureData['name'],
-                'status_id' => $featureData['status_id'],
-            ];
+        if ($request->features) {
+            $featuresData = [];
+            foreach ($validatedData['features'] as $featureData) {
+                $featuresData[] = [
+                    'name' => $featureData['name'],
+                    'status_id' => $featureData['status_id'],
+                ];
+            }
+            $subscriptionPlan->features()->createMany($featuresData);
         }
-        $subscriptionPlan->features()->createMany($featuresData);
 
-        return to_route('dashboard.subscriptionPlans.index')->with('success', 'created successfully');
+        return to_route('dashboard.subscriptionPlans.index')->with('success', __('created successfully'));
     }
 
     public function show(SubscriptionPlan $subscriptionPlan)
@@ -83,6 +85,6 @@ class SubscriptionPlanController extends Controller
         $this->authorize('delete SubscriptionPlan');
         $subscriptionPlan->delete();
 
-        return to_route('dashboard.subscriptionPlans.index')->with('success', 'deleted successfully');
+        return to_route('dashboard.subscriptionPlans.index')->with('success', __('deleted successfully'));
     }
 }

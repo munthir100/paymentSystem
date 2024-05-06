@@ -84,7 +84,7 @@
                                 <div class="repeater">
                                     <div class="d-flex mb-2">
                                         <input type="text" class="form-control mr-2" name="features[0][name]" placeholder="{{ __('Feature Name') }}" value="{{ old('features.0.name') }}">
-                                        <select required class="form-select" id="status_id" name="features[0][status_id]">
+                                        <select class="form-select" id="status_id" name="features[0][status_id]">
                                             <option value="">{{__('Select Status')}}</option>
                                             @foreach(\App\Models\SubscriptionPlanFeature::STATUSES as $id => $name)
                                             <option value="{{ $id }}" {{ old('features.0.status_id') == $id ? 'selected' : '' }}>{{ __($name) }}</option>

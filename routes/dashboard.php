@@ -11,7 +11,7 @@ use App\Http\Controllers\Dashboard\SubscriptionPlanController;
 
 Route::middleware(IsAdmin::class)->group(function () {
     Route::get('/home', [MainController::class, 'index'])->name('index');
-    Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
+    Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
     Route::resource('subscriptionPlans', SubscriptionPlanController::class);
     Route::resource('payments', PaymentController::class);
     Route::resource('users', UserController::class);
