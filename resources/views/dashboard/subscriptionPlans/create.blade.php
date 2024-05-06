@@ -27,7 +27,7 @@
 
             <div class="card-body">
                 <!-- Your form content for creating a new subscription plan goes here -->
-                <form action="{{ route('dashboard.subscriptionPlans.store') }}" method="POST">
+                <form id="subscriptionPlanForm" action="{{ route('dashboard.subscriptionPlans.store') }}" method="POST">
                     @csrf
                     <div class="row mb-3">
                         <div class="col-md-6 col-12">
@@ -99,8 +99,9 @@
                         </div>
                     </div>
                     <div class="mb-3">
-                        <button type="submit" class="btn btn-primary">{{ __("Submit") }}</button>
+                        <button type="button" class="btn btn-primary" id="submitButton">{{ __("Submit") }}</button>
                     </div>
+
                 </form>
             </div><!-- end card-body -->
         </div><!-- end card -->
@@ -119,51 +120,30 @@
 
 <script>
     $(document).ready(function() {
-        // Initialize repeaters
-        initializeRepeater('#pricesRepeater', 'prices');
-        initializeRepeater('#featuresRepeater', 'features');
-
-        // Template for prices and features
-        var priceTemplate = $('#pricesRepeater .repeater').eq(0).clone();
-        var featureTemplate = $('#featuresRepeater .repeater').eq(0).clone();
-
-        // Handle add price button
-        $('#addPriceBtn').on('click', function() {
-            handleAddButton(priceTemplate, '#pricesRepeater', 'prices');
+        // Handle form submission
+        $('#submitButton').click(function() {
+            // Handle repeaters
+            checkAndHandleEmptyRepeater('#featuresRepeater', 'features');
+            $('form').submit();
         });
+
+        // Template for features
+        var featureTemplate = $('#featuresRepeater .repeater').eq(0).clone();
 
         // Handle add feature button
         $('#addFeatureBtn').on('click', function() {
             handleAddButton(featureTemplate, '#featuresRepeater', 'features');
         });
 
-        // Handle delete price and feature buttons
-        $('#pricesRepeater, #featuresRepeater').on('click', 'button[data-repeater-delete]', function() {
+        // Handle delete feature button
+        $('#featuresRepeater').on('click', 'button[data-repeater-delete]', function() {
             handleDeleteButton($(this), $(this).closest('.repeater'));
         });
-
-        // Function to initialize repeaters
-        function initializeRepeater(repeaterId, hiddenInputName) {
-            $(repeaterId).repeater({
-                show: function() {
-                    $(this).slideDown();
-                },
-                hide: function(deleteElement) {
-                    $(this).slideUp(deleteElement);
-                    // Check if all items are deleted
-                    if ($(repeaterId + ' .repeater').length === 0) {
-                        // If all are deleted, set the corresponding hidden input value to null
-                        $('input[name="' + hiddenInputName + '"]').val(null);
-                    }
-                }
-            });
-        }
 
         // Function to handle add button click
         function handleAddButton(template, repeaterId, hiddenInputName) {
             var newTemplate = template.clone();
-            newTemplate.find('input').val('');
-            newTemplate.find('select').val('');
+            newTemplate.find('input, select').val('');
             $(repeaterId).append(newTemplate);
             updateInputNames($(repeaterId + ' .repeater'));
         }
@@ -187,6 +167,33 @@
                 });
             });
         }
+
+        // Function to check and handle empty repeaters
+        // Function to check and handle empty repeaters
+        function checkAndHandleEmptyRepeater(repeaterId, hiddenInputName) {
+            var repeater = $(repeaterId + ' .repeater');
+            var isEmpty = true;
+
+            // Check if any input within the repeater has a non-null value
+            repeater.each(function(index, element) {
+                $(element).find('input, select').each(function() {
+                    if ($(this).val() !== '') {
+                        isEmpty = false;
+                        return false; // Exit the loop if a non-null value is found
+                    }
+                });
+            });
+
+            // If the repeater is empty, add a hidden input with null value
+            if (repeater.length === 0 || isEmpty) {
+                $('<input>').attr({
+                    type: 'hidden',
+                    name: hiddenInputName,
+                    value: null
+                }).appendTo('form');
+            }
+        }
+
     });
 </script>
 @endsection

@@ -79,12 +79,12 @@
                             <div class="text-danger" id="errorPrices"></div>
                         </div>
 
-                        <div class="col-md-6">
-                            <label class="form-label">{{ __("Features") }}</label>
+                        <div class="col-md-6 col-12">
                             <div id="featuresRepeater" class="mt-0">
-                                <div>
-                                    @foreach ($subscriptionPlan->features as $index => $feature)
-                                    <div class="d-flex mb-2 repeater">
+                                <label class="form-label">{{ __("Features") }}</label>
+                                <div class="repeater">
+                                    @forelse ($subscriptionPlan->features as $index => $feature)
+                                    <div class="d-flex mb-2">
                                         <input type="text" class="form-control mr-2" name="features[{{ $index }}][name]" placeholder="{{ __('Feature Name') }}" value="{{ old('features.' . $index . '.name', $feature['name'] ?? '') }}">
                                         <select required class="form-select" id="status_id" name="features[{{ $index }}][status_id]">
                                             <option value="">{{__('Select Status')}}</option>
@@ -94,15 +94,26 @@
                                         </select>
                                         <button data-repeater-delete type="button" class="btn btn-outline-danger btn-sm">{{ __('Delete') }}</button>
                                     </div>
-                                    @endforeach
+                                    @empty
+                                    <div class="d-flex mb-2">
+                                        <input type="text" class="form-control mr-2" name="features[0][name]" placeholder="{{ __('Feature Name') }}" value="{{ old('features.0.name') }}">
+                                        <select class="form-select" id="status_id" name="features[0][status_id]">
+                                            <option value="">{{__('Select Status')}}</option>
+                                            @foreach(\App\Models\SubscriptionPlanFeature::STATUSES as $id => $name)
+                                            <option value="{{ $id }}" {{ old('features.0.status_id') == $id ? 'selected' : '' }}>{{ __($name) }}</option>
+                                            @endforeach
+                                        </select>
+                                        <button data-repeater-delete type="button" class="btn btn-outline-danger btn-sm">{{ __('Delete') }}</button>
+                                    </div>
+                                    @endforelse
                                 </div>
+                                <div class="text-danger" id="errorFeatures"></div>
+                                <button id="addFeatureBtn" type="button" class="btn btn-outline-primary btn-sm mt-2">{{ __('Add Feature') }}</button>
                             </div>
-                            <div class="text-danger" id="errorFeatures"></div>
-                            <button id="addFeatureBtn" type="button" class="btn btn-outline-primary btn-sm mt-2">{{ __('Add Feature') }}</button>
                         </div>
                     </div>
                     <div class="mb-3">
-                        <button type="submit" class="btn btn-primary">{{ __("Submit") }}</button>
+                        <button type="button" class="btn btn-primary" id="submitButton">{{ __("Submit") }}</button>
                     </div>
                 </form>
             </div><!-- end card-body -->
@@ -120,12 +131,17 @@
 <!-- Repeater JS -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.repeater/1.2.1/jquery.repeater.min.js"></script>
 
+
 <script>
     $(document).ready(function() {
-        // Initialize repeaters
-        initializeRepeater('#featuresRepeater', 'features');
+        // Handle form submission
+        $('#submitButton').click(function() {
+            // Handle repeaters
+            checkAndHandleEmptyRepeater('#featuresRepeater', 'features');
+            $('form').submit();
+        });
 
-        // Template for prices and features
+        // Template for features
         var featureTemplate = $('#featuresRepeater .repeater').eq(0).clone();
 
         // Handle add feature button
@@ -133,33 +149,15 @@
             handleAddButton(featureTemplate, '#featuresRepeater', 'features');
         });
 
-        // Handle delete price and feature buttons
+        // Handle delete feature button
         $('#featuresRepeater').on('click', 'button[data-repeater-delete]', function() {
             handleDeleteButton($(this), $(this).closest('.repeater'));
         });
 
-        // Function to initialize repeaters
-        function initializeRepeater(repeaterId, hiddenInputName) {
-            $(repeaterId).repeater({
-                show: function() {
-                    $(this).slideDown();
-                },
-                hide: function(deleteElement) {
-                    $(this).slideUp(deleteElement);
-                    // Check if all items are deleted
-                    if ($(repeaterId + ' .repeater').length === 0) {
-                        // If all are deleted, set the corresponding hidden input value to null
-                        $('input[name="' + hiddenInputName + '"]').val(null);
-                    }
-                }
-            });
-        }
-
         // Function to handle add button click
         function handleAddButton(template, repeaterId, hiddenInputName) {
             var newTemplate = template.clone();
-            newTemplate.find('input').val('');
-            newTemplate.find('select').val('');
+            newTemplate.find('input, select').val('');
             $(repeaterId).append(newTemplate);
             updateInputNames($(repeaterId + ' .repeater'));
         }
@@ -183,6 +181,33 @@
                 });
             });
         }
+
+        // Function to check and handle empty repeaters
+        // Function to check and handle empty repeaters
+        function checkAndHandleEmptyRepeater(repeaterId, hiddenInputName) {
+            var repeater = $(repeaterId + ' .repeater');
+            var isEmpty = true;
+
+            // Check if any input within the repeater has a non-null value
+            repeater.each(function(index, element) {
+                $(element).find('input, select').each(function() {
+                    if ($(this).val() !== '') {
+                        isEmpty = false;
+                        return false; // Exit the loop if a non-null value is found
+                    }
+                });
+            });
+
+            // If the repeater is empty, add a hidden input with null value
+            if (repeater.length === 0 || isEmpty) {
+                $('<input>').attr({
+                    type: 'hidden',
+                    name: hiddenInputName,
+                    value: null
+                }).appendTo('form');
+            }
+        }
+
     });
 </script>
 @endsection

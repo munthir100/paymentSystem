@@ -27,9 +27,9 @@ class CreateSubscriptionPlanRequest extends FormRequest
             'association_name' => 'required|string|max:255',
             'status_id' => 'required|exists:statuses,id',
             'price' => 'required|numeric|min:0',
-            'features' => 'sometimes|array',
-            'features.*.name' => 'sometimes|string|max:255',
-            'features.*.status_id' => 'sometimes|exists:statuses,id',
+            'features' => 'nullable|array',
+            'features.*.name' => 'required_with:features|string|max:255',
+            'features.*.status_id' => 'required_with:features|exists:statuses,id',
         ];
     }
 }

@@ -62,7 +62,9 @@ class SubscriptionPlanController extends Controller
         $validatedData = $request->validated();
 
         $subscriptionPlan->update($validatedData);
-
+        if ($request->features == null) {
+            $subscriptionPlan->features()->delete();
+        }
         if (isset($validatedData['features'])) {
             $featuresData = [];
             foreach ($validatedData['features'] as $featureData) {
@@ -76,7 +78,7 @@ class SubscriptionPlanController extends Controller
             $subscriptionPlan->features()->createMany($featuresData);
         }
 
-        return redirect()->route('dashboard.subscriptionPlans.index')->with('success', 'Subscription plan updated successfully');
+        return back()->with('success', __('updated successfully'));
     }
 
 
