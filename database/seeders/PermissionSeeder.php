@@ -21,6 +21,7 @@ class PermissionSeeder extends Seeder
             'SubscriptionPlan',
             'SubscriptionPlanFeature',
             'Payment',
+            'Marchant',
         ];
 
         foreach ($models as $model) {

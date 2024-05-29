@@ -48,6 +48,11 @@
                     </a>
                 </li>
                 <li class="nav-item">
+                    <a class="nav-link menu-link {{ request()->routeIs('dashboard.marchants.*') ? 'active' : '' }}" href="{{route('dashboard.marchants.index')}}" aria-expanded="false" aria-controls="sidebarProjects">
+                        <i class="ri-bank-card-line"></i> <span id="sidebar-span">{{ __('Marchants') }}</span>
+                    </a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link menu-link {{ request()->routeIs('dashboard.users.*') ? 'active' : '' }}" href="{{route('dashboard.users.index')}}" aria-expanded="false" aria-controls="sidebarTasks">
                         <i class="ri-user-2-line"></i> <span id="sidebar-span">{{ __('Users') }}</span>
                     </a>
