@@ -25,12 +25,12 @@ class CreateMarchantRequest extends FormRequest
             'name' => 'required|string|max:255',
             'identity_number' => 'required|string|max:255|unique:marchants,identity_number',
             'phone' => 'required|string|max:20',
-            'address' => 'nullable|string|max:255',
+            'address' => 'required|string|max:255',
             'iban' => 'required|string|max:34|unique:marchants,iban',
             'email' => 'required|string|email|max:255|unique:marchants,email',
             'commercial_registration_number' => 'required|string|max:255|unique:marchants,commercial_registration_number',
-            'commercial_registration_file' => 'nullable|string|max:255',
             'tax_number' => 'required|string|max:255|unique:marchants,tax_number',
+            'commercial_registration_file' => 'required|file|mimes:pdf,doc,docx|max:1024',
             'tax_file' => 'required|file|mimes:pdf,doc,docx|max:10240',
         ];
     }

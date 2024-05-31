@@ -3,13 +3,15 @@
 namespace App\Models;
 
 use App\Filters\MarchantFilters;
+use Spatie\MediaLibrary\HasMedia;
 use Essa\APIToolKit\Filters\Filterable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Spatie\MediaLibrary\InteractsWithMedia;
 
-class Marchant extends Model
+class Marchant extends Model implements HasMedia
 {
-    use HasFactory,Filterable;
+    use HasFactory,Filterable,InteractsWithMedia;
 
     protected $default_filters = MarchantFilters::class;
 
@@ -21,8 +23,7 @@ class Marchant extends Model
         'iban', 
         'email', 
         'commercial_registration_number', 
-        'commercial_registration_file', 
         'tax_number', 
     ];
-
+    
 }

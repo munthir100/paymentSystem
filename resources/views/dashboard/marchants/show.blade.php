@@ -13,7 +13,7 @@
     <div class="col-lg-12">
         <div class="card">
             <div class="card-header">
-                <h4 class="card-title">{{ __("Payment Details") }}</h4>
+                <h4 class="card-title">{{ __("Marchant Details") }}</h4>
             </div>
             <div class="card-body">
                 <div class="table-responsive">
@@ -21,39 +21,55 @@
                         <tbody>
                             <tr>
                                 <th>{{ __("ID") }}</th>
-                                <td>{{ $payment->id }}</td>
+                                <td>{{ $marchant->id }}</td>
                             </tr>
                             <tr>
-                                <th>{{ __("Transaction ID") }}</th>
-                                <td>{{ $payment->transaction_id }}</td>
+                                <th>{{ __("Name") }}</th>
+                                <td>{{ $marchant->name }}</td>
                             </tr>
                             <tr>
-                                <th>{{ __("Subscription Plan") }}</th>
-                                <td>{{ $payment->subscriptionPlan->name }}</td>
+                                <th>{{ __("Identity Number") }}</th>
+                                <td>{{ $marchant->identity_number }}</td>
                             </tr>
                             <tr>
-                                <th>{{ __("Period") }}</th>
-                                <td>{{ $payment->period }}</td>
+                                <th>{{ __("Phone") }}</th>
+                                <td>{{ $marchant->phone }}</td>
                             </tr>
                             <tr>
-                                <th>{{ __("Amount") }}</th>
-                                <td>{{ $payment->amount }}</td>
+                                <th>{{ __("Address") }}</th>
+                                <td>{{ $marchant->address }}</td>
                             </tr>
                             <tr>
-                                <th>{{ __("Payment Method") }}</th>
-                                <td>{{ $payment->payment_method }}</td>
+                                <th>{{ __("IBAN") }}</th>
+                                <td>{{ $marchant->iban }}</td>
                             </tr>
                             <tr>
-                                <th>{{ __("Customer Name") }}</th>
-                                <td>{{ $payment->customer_name }}</td>
+                                <th>{{ __("Email") }}</th>
+                                <td>{{ $marchant->email }}</td>
                             </tr>
                             <tr>
-                                <th>{{ __("Status") }}</th>
-                                <td><x-dashboard.table-status-badge statusId="{{ $payment->status_id }}" /></td>
+                                <th>{{ __("Commercial Registration Number") }}</th>
+                                <td>{{ $marchant->commercial_registration_number }}</td>
                             </tr>
                             <tr>
-                                <th>{{ __("Created At") }}</th>
-                                <td>{{ $payment->created_at }}</td>
+                                <th>{{ __("Commercial Registration File") }}</th>
+                                <td>
+                                    <a href="{{ $marchant->getFirstMediaUrl('commercial_registration_files') }}">
+                                        {{__('View')}}
+                                    </a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>{{ __("Tax Number") }}</th>
+                                <td>{{ $marchant->tax_number }}</td>
+                            </tr>
+                            <tr>
+                                <th>{{ __("Tax File") }}</th>
+                                <td>
+                                    <a href="{{ $marchant->getFirstMediaUrl('tax_files') }}">
+                                        {{__('View')}}
+                                    </a>
+                                </td>
                             </tr>
                         </tbody>
                     </table>

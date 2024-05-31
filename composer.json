@@ -9,6 +9,7 @@
         "essa/api-tool-kit": "^2.1",
         "laravel/framework": "^11.0",
         "laravel/tinker": "^2.9",
+        "spatie/laravel-medialibrary": "^11.5",
         "spatie/laravel-permission": "^6.7"
     },
     "require-dev": {

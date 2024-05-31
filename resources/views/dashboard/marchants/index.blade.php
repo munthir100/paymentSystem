@@ -55,6 +55,9 @@
                                         <div class="edit">
                                             <a href="{{ route('dashboard.marchants.show', $marchant->id) }}" class="btn btn-icon btn-info show-item-btn" title="{{__('Show')}}"><i class="ri-eye-line"></i></a>
                                         </div>
+                                        <div class="edit">
+                                            <a href="{{ route('dashboard.marchants.edit', $marchant->id) }}" class="btn btn-icon btn-primary show-item-btn" title="{{__('Edit')}}"><i class="ri-edit-line"></i></a>
+                                        </div>
                                         <div class="remove">
                                             <button class="btn btn-icon btn-danger remove-item-btn" title="{{__('Delete')}}" data-id="{{ $marchant->id }}"><i class="bx bx-trash"></i></button>
                                         </div>

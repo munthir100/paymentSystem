@@ -32,7 +32,7 @@ class UpdateMarchantRequest extends FormRequest
                 Rule::unique('marchants', 'identity_number')->ignore($merchantId),
             ],
             'phone' => 'string|max:20',
-            'address' => 'nullable|string|max:255',
+            'address' => 'string|max:255',
             'iban' => [
                 'string',
                 'max:34',
@@ -49,12 +49,12 @@ class UpdateMarchantRequest extends FormRequest
                 'max:255',
                 Rule::unique('marchants', 'commercial_registration_number')->ignore($merchantId),
             ],
-            'commercial_registration_file' => 'nullable|string|max:255',
             'tax_number' => [
                 'string',
                 'max:255',
                 Rule::unique('marchants', 'tax_number')->ignore($merchantId),
             ],
+            'commercial_registration_file' => 'file|mimes:pdf,doc,docx|max:10240',
             'tax_file' => 'file|mimes:pdf,doc,docx|max:10240',
         ];
     }
