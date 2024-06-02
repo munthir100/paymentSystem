@@ -1,16 +1,13 @@
-setup:
-	@composer install
-	@generate key
-	@copy env file
-	@data
+git clone https://github.com/munthir100/paymentSystem.git
 
-composer install:
-	composer install
+cd paymentSystem
 
-generate key:
-	php artisan key:generate
+composer install
 
-copy env file:
-	cp .env.example .env
-data:
-	php artisan migrate --seed
+cp .env.example .env
+
+php artisan key:generate
+
+php artisan migrate --seed
+
+php artisan serve
